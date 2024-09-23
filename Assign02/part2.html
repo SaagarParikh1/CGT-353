@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Part 2</title>
+    <link rel="stylesheet" href="css/pt2.css" type="text/css" />
+    <script type="text/javascript">
+        function updateFormProgress() {
+            var progressBar = document.getElementById("formProgressBar");
+            var count = 0;
+            
+            if (document.getElementById("userName").value != "") count++;
+            if (document.getElementById("userEmail").value != "") count++;
+            if (document.getElementById("ageGroup").value != "") count++;
+            if (document.getElementById("feedback").value != "") count++;
+            if (document.getElementById("favColor").value != "") count++;
+            if (document.getElementById("subscribeYes").checked || document.getElementById("subscribeNo").checked) count++;
+            if (document.getElementById("websiteRating").value != "") count++;
+            if (document.getElementById("receiveUpdates").checked) count++;
+            if (document.getElementById("visitFrequency").value != "") count++;
+            if (document.getElementById("contactMethod").value != "") count++;
+
+            progressBar.value = count;
+        }
+    </script>
+</head>
+<body>
+    <h1>Part 2</h1>
+    <div style="margin-left: 190px;">
+        <span id="formProgress">Progress:</span>
+        <progress value="0" max="10" id="formProgressBar"></progress>
+    </div>
+    <form name="feedbackForm" id="feedbackForm" action="processFeedback.php" method="post">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <ol>
+                <li>
+                    <label for="userName">Username</label>
+                    <input id="userName" name="userName" type="text" placeholder="Enter your Username" required onChange="updateFormProgress();" />
+                </li>
+                <li>
+                    <label for="countryOfResidence">Country of Residence</label>
+                    <input id="countryOfResidence" name="countryOfResidence" type="text" placeholder="Enter your country of residence" required onChange="updateFormProgress();" />
+                </li>
+                <li>
+                    <label for="ageGroup">Age Group</label>
+                    <select id="ageGroup" name="ageGroup" required onChange="updateFormProgress();">
+                        <option value="">Select your age group</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46+">46+</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="visitFrequency">Visit Frequency</label>
+                    <select id="visitFrequency" name="visitFrequency" required onChange="updateFormProgress();">
+                        <option value="">How often do you visit?</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="rarely">Rarely</option>
+                    </select>
+                </li>
+            </ol>
+        </fieldset>
+        <fieldset>
+            <legend>Feedback and Preferences</legend>
+            <ol>
+                <li>
+                    <label for="favColor">Favorite Color</label>
+                    <input id="favColor" name="favColor" type="color" required onChange="updateFormProgress();" />
+                </li>
+                <li>
+                    <label for="websiteRating">Website Rating</label>
+                    <input id="websiteRating" name="websiteRating" type="range" min="1" max="5" required onChange="updateFormProgress();" />
+                </li>
+                <li>
+                    <label for="feedback">Comments</label>
+                    <textarea id="feedback" name="feedback" rows="4" placeholder="Your comments..." required onChange="updateFormProgress();"></textarea>
+                </li>
+                <li>
+                    <label>Would you like to subscribe?</label>
+                    <input id="subscribeYes" name="subscribe" type="radio" value="yes" onChange="updateFormProgress();" />
+                    <label for="subscribeYes">Yes</label>
+                    <input id="subscribeNo" name="subscribe" type="radio" value="no" onChange="updateFormProgress();" />
+                    <label for="subscribeNo">No</label>
+                </li>
+                <li>
+                    <label for="contactMethod">Preferred Contact Method</label>
+                    <select id="contactMethod" name="contactMethod" required onChange="updateFormProgress();">
+                        <option value="">Select contact method</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                        <option value="sms">SMS</option>
+                    </select>
+                </li>
+                <li>
+                    <input id="receiveUpdates" name="receiveUpdates" type="checkbox" onChange="updateFormProgress();" />
+                    <label for="receiveUpdates">Receive product updates</label>
+                </li>
+            </ol>
+        </fieldset>
+        <button type="submit">Submit Feedback</button>
+    </form>
+    <a href="assign02.html">Back to Part 1</a>
+</body>
+</html>

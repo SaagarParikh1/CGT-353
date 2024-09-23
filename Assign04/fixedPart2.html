@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Assign04 - Fixed Part 2</title>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: rgb(162, 193, 205);
+        }
+
+        /* Updated contactForm - different size and location */
+        #contactForm {
+            width: 350px;
+            height: 200px;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 9pt;
+            font-weight: bold;
+            position: absolute;
+            top: 100px;
+            right: -350px; /* Changed location to right edge */
+            background-color: rgba(50, 50, 50, .99);
+            margin: 0px;
+            z-index: 110;
+        }
+
+        #contact span {
+            padding: 0px;
+            margin: 0px;
+            position: relative;
+            top: 2px;
+        }
+
+
+        #contact {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 9pt;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 10px;
+            position: absolute;
+            top: 200px;
+            right: -25px; /* Right edge */
+            border-radius: 10px;
+            background-color: rgba(177, 148, 108, .75);
+            width: 80px;
+            height: 25px;
+            margin: 0px;
+            z-index: 100;
+        }
+
+        #contact:hover, #contact:focus {
+            background-color: rgba(177, 148, 108, .90);
+            cursor: pointer;
+        }
+
+        #contact.fixed, #contactForm.fixed {
+            position: fixed;
+        }
+        #contact {
+    transform: rotate(-90deg); 
+}
+
+        /* Updated dropdown - different location */
+        #dropdown {
+            position: absolute;
+            top: -200px; /* Initially hidden */
+            left: 200px; /* New location */
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #000000;
+            z-index: 75;
+        }
+
+        #dropdown.fixed {
+            position: fixed;
+        }
+
+        /* Styles for content areas */
+        #content1, #content2, #content3, #content4, #content5 {
+            position: absolute;
+            border-radius: 15px;
+            background-color: #A3A3A3;
+            width: 600px;
+            height: 300px;
+            overflow: hidden;
+            z-index: 1;
+            padding:10px;
+        }
+
+        #content1 {
+            top: 100px;
+            left: 25px;
+        }
+
+        #content2 {
+            top: 100px;
+            left: 660px;
+        }
+
+        #content3 {
+            top: 425px;
+            left: 25px;
+        }
+
+        #content4 {
+            top: 425px;
+            left: 660px;
+        }
+
+        #content5 {
+            top: 750px;
+            left: 25px;
+            height: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- New dropdown div -->
+    <div id="dropdown">
+        New Dropdown Content<br/><br/>
+        Will you take our quick survey?<br/><br/>
+        <a href="#!" id="closeDropdown">Close</a>
+    </div>
+
+    <!-- Contact me fixed flyout div -->
+    <div id="contact"><span>Contact Me</span></div>
+    <div id="contactForm">
+        <div id="contactClose" style="position:relative; text-align:center; width:15px; left:320px; top:5px; border: 1px solid #dddddd; padding:1px; color:#dddddd; cursor: pointer;">X</div>
+        <div id="contactAddress" style="position:relative; width:300px; left:25px; top:5px; padding:1px; color:#dddddd;">
+            Saagar Parikh<br/>&nbsp;<br />
+            parikh62@purdue.edu <br/>&nbsp;<br />
+            Purdue University<br/>
+            West Lafayette, IN 47907
+        </div>
+    </div>
+    <!-- end contact me fixed flyout div -->
+
+    <h3>Assign04 - Fixed Part 2</h3>
+    <p>
+        <a href="fixed.html">Fixed Part 1</a> |
+        <a href="fixedPart2.html">Fixed Part 2</a> |
+        <a href="movingAd.html">Moving Ad</a> |
+        <a href="movingBall.html">Moving Ball</a> |
+        <a href="bouncingBall.html">Bouncing Ball</a>
+    </p>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            // Dropdown slide down functionality
+            $("#dropdown").animate({
+                top:"+200" // New position where it will stop
+            }, 2000); // Slow slide down
+
+            $("#dropdown").addClass("fixed");
+
+            // Close the dropdown
+            $("#closeDropdown").click(function(event){
+                event.preventDefault();
+                $("#dropdown").css("top", "-200px"); // Move back up
+            });
+
+            // Contact me fixed sidebar
+            var isShowing = 1;
+
+            // Rotate the div using CSS
+            $("#contact").addClass("rotate");
+
+            // When Contact Me is clicked
+            $("#contact").click(function(e){
+                e.preventDefault();
+
+                if (isShowing % 2) {
+                    // Slide into view
+                    $("#contact").animate({ right: "+=350" }, 700);
+                    $("#contactForm").animate({ right: "+=350" }, 700);
+                    $("#contact").addClass("fixed");
+                    $("#contactForm").addClass("fixed");
+                    isShowing++;
+                } else {
+                    // Slide out of view
+                    $("#contact").animate({ right: "-=350" }, 700);
+                    $("#contactForm").animate({ right: "-=350" }, 700);
+                    isShowing++;
+                }
+            });
+
+            // Close contact form when 'X' is clicked
+            $("#contactClose").click(function(e){
+                e.preventDefault();
+                $("#contact").animate({ right: "-=350" }, 700);
+                $("#contactForm").animate({ right: "-=350" }, 700);
+                isShowing++;
+            });
+        });
+    </script>
+
+    <!-- Content sections -->
+    <div id="content1">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     </div>
+     
+     <div id="content2">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     </div>
+     
+     <div id="content3">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     </div>
+     
+     <div id="content4">
+         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     </div>
+    <div id="content5">
+        <p>Asdfasdf content.</p>
+    </div>
+</body>
+</html>

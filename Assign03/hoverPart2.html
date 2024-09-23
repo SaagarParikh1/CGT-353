@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Assign03 Hover Part 2</title>
+    <style type="text/css">
+        div { width:250px; height:200px; border:1px solid #aaa; text-align:center; background-color:#eee;}
+        div#wrapper { position:absolute; top:20px; left:20px; width:1150px; height:700px;} /* Adjusted for more images */
+        div#th1 { position:absolute; top:30px; left:30px; background:url(https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg) no-repeat center;}
+        div#th2 { position:absolute; top:30px; left:300px; background:url(https://t3.ftcdn.net/jpg/06/48/79/10/360_F_648791013_cQK30SdyiLrVQ96Bqn2MOkz4JmvgttGr.jpg) no-repeat center;}
+        div#th3 { position:absolute; top:30px; left:570px; background:url(https://images.ctfassets.net/kftzwdyauwt9/6Hpmny9K2Z8Xxget5bmlWa/66634b4c69faef5600e5ea48f499ba5e/Anastronautridingahorseinaphotorealisticstyle6.jpg?w=3840&q=90&fm=webp) no-repeat center;}
+        div#th4 { position:absolute; top:30px; left:840px; background:url(https://images.interestingengineering.com/img/iea/PrO311V36q/dall-e.jpg) no-repeat center;}
+        div#th5 { position:absolute; top:250px; left:30px; background:url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg) no-repeat center;}
+        div#th6 { position:absolute; top:250px; left:300px; background:url(https://media.springernature.com/lw703/springer-static/image/art%3A10.1038%2F528452a/MediaObjects/41586_2015_Article_BF528452a_Figg_HTML.jpg) no-repeat center;}
+        div#th7 { position:absolute; top:250px; left:570px; background:url(https://i0.wp.com/picjumbo.com/wp-content/uploads/amazing-stone-path-in-forest-free-image.jpg?w=600&quality=80) no-repeat center;}
+        div#th8 { position:absolute; top:250px; left:840px; background:url(https://image-processor-storage.s3.us-west-2.amazonaws.com/images/3cf61c1011912a2173ea4dfa260f1108/halo-of-neon-ring-illuminated-in-the-stunning-landscape-of-yosemite.jpg) no-repeat center;}
+        div#th9 { position:absolute; top:470px; left:30px; background:url(https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg) no-repeat center;}
+        div#th10 { position:absolute; top:470px; left:300px; background:url(https://pixlr.com/images/generator/text-to-image.webp) no-repeat center;}
+        div#th11 { position:absolute; top:470px; left:570px; background:url(https://static.vecteezy.com/system/resources/thumbnails/028/737/386/small_2x/dramatic-depiction-of-a-ufo-fleet-in-the-night-sky-signaling-a-possible-alien-encounter-ai-generative-photo.jpg) no-repeat center;}
+        div#th12 { position:absolute; top:470px; left:840px; background:url(https://images.pexels.com/photos/128756/pexels-photo-128756.jpeg?cs=srgb&dl=pexels-crisdip-35358-128756.jpg&fm=jpg) no-repeat center;}
+        div#links {position:absolute; top:730px; left: 20px; width: 1150px; height: 30px;}
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="th1"></div>
+        <div id="th2"></div>
+        <div id="th3"></div>
+        <div id="th4"></div>
+        <div id="th5"></div>
+        <div id="th6"></div>
+        <div id="th7"></div>
+        <div id="th8"></div>
+        <div id="th9"></div>
+        <div id="th10"></div>
+        <div id="th11"></div>
+        <div id="th12"></div>
+    </div>
+    
+    <div id="links">
+        <a href="hover.html">Go to Hover Part 1</a>
+        <a href="hoverAndClick.html">Hover and Click</a>
+        <a href="showHide.html">Show Hide</a>
+        <a href="hoverPart2.html">Refresh Hover Part 2</a>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // Apply the hover effect to new images
+            $("div").css("border-radius", "10px");
+            $("div[id!=wrapper]").animate({"opacity" : .6}).hover(function() {
+                $(this).animate({"opacity" : 1});
+            }, function() {
+                $(this).animate({"opacity" : .6});
+            });
+        });
+    </script>
+</body>
+</html>
