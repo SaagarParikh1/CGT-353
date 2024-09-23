@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    background-color: #444444;
+}
+
+nav {
+    background-color: #2b2b2b;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+img {
+    max-width: 200px; 
+    height: auto; 
+    margin: 30px auto; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+
+h1, h2, h3 {
+    color: #ffffff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+thead {
+    background-color: #2e0000;
+}
+
+tfoot {
+    background-color: #2e0000;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 75px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.interesting-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.interesting-list li {
+    margin-bottom: 20px;
+    width: 48%; 
+    display: flex;
+    align-items: center;
+    background-color: #dedede;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.interesting-list a {
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.interesting-list a:hover {
+    text-decoration: underline;
+}
+
+.interesting-list img {
+    width: 60px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.interesting-list li p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
