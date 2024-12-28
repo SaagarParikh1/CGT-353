@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 2</title>
+  
+  <style type="text/css">
+    body {
+      margin: 0;
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+      background-color: #f4f6f7;
+    }
+
+    #top { 
+      position: relative;
+      width: 1450px;
+      height: 150px;
+      background-color: #2c3e50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    #left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #34495e;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      color: #f39c12;
+      font-size: 1.1rem;
+      margin: 15px 0;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    li:hover {
+      color: #e67e22;
+    }
+
+    #middle {
+      margin-left: 240px;
+      margin-right: 240px;
+      padding: 20px;
+      background-color: #ecf0f1;
+      min-height: 100vh;
+      width: 900px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    #right {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      background-color: #e67e22;
+      padding: 20px;
+      overflow-y: auto;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #right img {
+      display: block;
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 1430px;
+      z-index: 999;
+      background-color: #2c3e50;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #f5b041;
+      font-size: 15px;
+      font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+      padding: 10px 15px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      color: #f39c12;
+    }
+
+    .navbar ul li a.active {
+      font-weight: bold;
+      color: #27ae60;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 1100px) {
+      #top {width: 1250px;}
+      #left {display: none;}
+      #middle {margin-left: auto; margin-right: 240px; width: 850px;}
+      #right {width: 200px;right: 0;}
+      .navbar {width: 1250px;}
+    }
+    @media screen and (max-width: 900px) {
+      #top {width: 800px;}
+      #middle {width: 750px;margin-right: 200px;}
+      #right {width: 180px;}
+      .navbar {width: 800px;}
+    }
+
+    @media screen and (max-width: 700px) {
+      #top {width: 600px;}
+      #middle {margin-right: 160px;}
+      #right {width: 150px;}
+      .navbar {width: 600px;}
+    }
+
+    @media screen and (max-width: 500px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      #middle {
+        margin: 0 auto;
+        width: 90%;
+      }
+
+      #right {
+        display: none;
+      }
+
+      .navbar {
+        width: 500px;
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+      #top {
+        width: 330px;
+        height: 200px;
+      }
+
+      #middle {
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .navbar {
+        width: 300px;
+      }
+    }
+  </style>
+
+  <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+  <div id="top">
+    <h1>Part 2</h1>
+  </div>
+
+  <div id="left">
+    <h3>Menu</h3>
+    <ul>
+      <li>Awesome Link 1</li>
+      <li>Awesome Link 2</li>
+      <li>Awesome Link 3</li>
+      <li>Awesome Link 4</li>
+    </ul>
+  </div>
+
+  <div id="middle">
+    <h2>Main Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis dui condimentum, condimentum justo vel, blandit felis.</p>
+    <p>Proin sed nisl eu purus commodo ultricies. Sed eu ante at lectus tempor dignissim ut non augue.</p>
+    <p>Vivamus scelerisque, sapien sed malesuada fringilla, justo erat vehicula urna, tempor egestas felis justo quis orci.</p>
+    <p>Vivamus scelerisque, sapien sed malesuada fringilla, justo erat vehicula urna, tempor egestas felis justo quis orci.</p>
+  </div>
+
+  <div id="right">
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+    <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="ad" title="ad" />
+  </div>
+
+  <div class="navbar">
+    <ul>
+      <li><a href="ResponsiveDesign.html" class="active">Part 1</a></li>
+      <li><a href="RWDpart2.html">Part 2</a></li>
+      <li><a href="RWDpart3.html">Part 3</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>

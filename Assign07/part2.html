@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Part2</title>
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+    <style type="text/css">
+        body {background-color:#eeeeff;}
+        div#smallImage {width:350px; height:197px; position:absolute; top:20px; left:20px; border:1px solid #000000;}
+        div#largeImage {width:350px; height:302px; position:absolute; top:20px; left:420px; border:1px solid #000000; overflow:hidden;}
+        div#thumb1 {width:170px; height:96px; position:absolute; top:225px; left:20px; border:1px solid #000000;}
+        div#thumb2 {width:170px; height:96px; position:absolute; top:225px; left:200px; border:1px solid #000000;}
+        h1 {padding-top: 350px;}
+    </style>
+</head>
+
+<body>
+    <h1>Part 2</h1>
+    <div id="smallImage"></div>
+    <div id="thumb1"></div>
+    <div id="thumb2"></div>
+    <div id="largeImage"></div>
+    <a href="index.html">Go to Part 1</a>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            //Load smallImage
+            $("#smallImage").html("<img src='zoomImages/thumbs/bird1.jpg' width='350' height='197' alt='' title='' />");
+            //Load thumb1
+            $("#thumb1").html("<img src='zoomImages/thumbs/bird2.jpg' width='170' height='96' alt='' title='' />");
+            //Load thumb2
+            $("#thumb2").html("<img src='zoomImages/thumbs/bird3.jpg' width='170' height='96' alt='' title='' />");
+
+            //If thumb1 is clicked, move it to smallImage and move smallImage pic to thumb1
+            $("#thumb1").click(function() {         //get the value currently in smallImage
+                var temp = $("#smallImage").html();
+                $("#smallImage").html($("#thumb1").html());  //Store the value of thumb1 into smallImage
+                $("#smallImage").children().width(350);       //Set the width of image to 350
+                $("#smallImage").children().height(197);      //Set the height of image to 197
+                $("#thumb1").html(temp);                      //Store the temp value into thumb1
+                $("#thumb1").children().width(170);           //Set the width of image to 170
+                $("#thumb1").children().height(96);           //Set the height of image to 96
+            }); //end thumb1 click function
+
+            //If thumb2 is clicked, move it to smallImage and move smallImage pic to thumb2
+            $("#thumb2").click(function() {        //get the value currently in smallImage
+                var temp = $("#smallImage").html();
+                $("#smallImage").html($("#thumb2").html());  //Store the value of thumb2 into smallImage
+                $("#smallImage").children().width(350);       //Set the width of image to 350
+                $("#smallImage").children().height(197);      //Set the height of image to 197
+                $("#thumb2").html(temp);                      //Store the temp value into thumb2
+                $("#thumb2").children().width(170);           //Set the width of image to 170
+                $("#thumb2").children().height(96);           //Set the height of image to 96
+            }); //end thumb2 click function
+
+            //When hovering over smallImage
+            $("#smallImage").hover(function(){
+                $("#largeImage").html($("#smallImage").html());
+                $("#largeImage").children().css("position", "absolute");
+                $("#largeImage").children().css("left", "0");
+                $("#largeImage").children().css("top", "0");
+                var imgLocation = $("#largeImage").children().attr("src");
+                var slashLocation = imgLocation.lastIndexOf("/");
+                var imgName = imgLocation.substring(slashLocation+1);
+                
+                $("#largeImage").children().width(1600);
+                $("#largeImage").children().height(900);
+                $("#largeImage").children().attr("src", "zoomImages/"+imgName);
+            },
+            function(){
+                $("#largeImage").html("");
+            }); //end hovering over smallImage
+
+            //smallImage size is set to 350 x 197
+            //largeImage size is set to 1600 x 900
+            //Top left corner of smallImage is 20, 20
+            //Top left corner of largeImage is 420, 20
+            //Mouse offset is 21.8%, 23.8% (75 / 350 = 21.8%)
+            //Field of view is 175 x 151 which fits 100 inside of the image
+            //Image is 400 by 300 pixels
+            $("#smallImage").mousemove(function(event){
+                //xLoc stores the x % below needs to become the center of largeImage
+                //Center of smallImage is 20 pixels
+                //Center of largeImage would be (175 x 151) or 420+175 and 20+151
+                var xLoc = ((event.pageX-20)*1600) / 350;
+                var yLoc = ((event.pageY-20)*900) / 197;
+
+                //Move the largeImage around based on the location of the mouse over the smallImage
+                //Don't let it scroll off the left
+                //Don't let it scroll off the right
+                //We'll just match up the adjusted x value with the center of the largeImage div
+                if(xLoc < 195)
+                    $("#largeImage").children().css("left", "0");
+                else if(xLoc > 1415)
+                    $("#largeImage").children().css("left", (-1)*(1250));
+                else if(xLoc > 195)
+                    $("#largeImage").children().css("left", (-1)*(xLoc-175));
+
+                if(yLoc < 171)
+                    $("#largeImage").children().css("top", "0");
+                else if(yLoc > 750)
+                    $("#largeImage").children().css("top", (-1)*(598));
+                else if(yLoc > 171)
+                    $("#largeImage").children().css("top", (-1)*(yLoc-151));
+            }); //end mousemove
+        }); //end document ready
+    </script>
+</body>
+</html>
