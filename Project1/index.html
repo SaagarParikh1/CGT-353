@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Project 1</h1>
+        <div class="gallery">
+            <div class="gallery-item" data-category="Animals" data-slideshow="animals">
+                <img src="https://www.worldanimalprotection.ca/cdn-cgi/image/width=1280,format=auto/siteassets/shutterstock_2461984615.jpg" alt="Nature Image">
+                <div class="hover-label">Animals</div>
+            </div>
+            <div class="gallery-item" data-category="Fantasy" data-slideshow="fantasy">
+                <img src="https://i0.wp.com/joncronshaw.com/wp-content/uploads/2023/12/DALL%C2%B7E-2023-12-05-10.05.23-A-majestic-wyvern-soaring-above-a-breathtaking-fantasy-landscape.-The-wyvern-a-large-dragon-like-creature-with-two-legs-and-a-pair-of-large-wings-g.png?fit=1200%2C686&ssl=1" alt="City Image">
+                <div class="hover-label">Fantasy</div>
+            </div>
+            <div class="gallery-item" data-category="Aliens" data-slideshow="aliens">
+                <img src="https://imgcdn.stablediffusionweb.com/2024/3/21/d7d65485-5142-4acf-86ca-d08157296500.jpg" alt="Animals Image">
+                <div class="hover-label">Aliens</div>
+            </div>
+            <div class="gallery-item" data-category="Landscapes" data-slideshow="landscapes">
+                <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg" alt="Travel Image">
+                <div class="hover-label">Landscapes</div>
+            </div>
+            <div class="gallery-item" data-category="Cars" data-slideshow="cars">
+                <img src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/models_gw/2023/03_29_revuelto/gate_models_s_02_m.jpg" alt="Food Image">
+                <div class="hover-label">Cars</div>
+            </div>
+            <div class="gallery-item" data-category="Dinosaurs" data-slideshow="dinosaurs">
+                <img src="https://www.dinosaur.org/wp-content/uploads/2024/02/traissic-era-picture.png" alt="Art Image">
+                <div class="hover-label">Dinosaurs</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="slideshowModal" class="slideshow-modal">
+        <span class="close">&times;</span>
+        <span class="prev">&#10094;</span>
+        <div class="slideshow-content">
+            <img id="slideshowImage" class="slideshow-image" src="" alt="Slideshow Image">
+            <div class="dots-container" id="dotsContainer"></div>
+        </div>
+        <span class="next">&#10095;</span>
+    </div>
+
+    <div class="flyout">
+        <div class="flyout-tab" onclick="toggleFlyout()">
+            <span>&#9776;</span> 
+        </div>
+        <div class="flyout-content">
+            <h2>Information Tab</h2>
+            <p>Click on any image to view a slideshow in each category.</p><br><br>
+            Saagar Parikh<br/><br/>
+            parikh62@purdue.edu <br/><br/>
+            Purdue University<br/>
+            West Lafayette, IN 47907<br><br>
+            <button onclick="toggleFlyout()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleFlyout() {
+            const flyout = document.querySelector('.flyout');
+            flyout.classList.toggle('open');
+        }
+
+       
+        document.addEventListener("DOMContentLoaded", function () {
+            const galleryItems = document.querySelectorAll(".gallery-item");
+            const slideshowModal = document.getElementById("slideshowModal");
+            const slideshowImage = document.getElementById("slideshowImage");
+            const closeBtn = document.querySelector(".close");
+            const prevBtn = document.querySelector(".prev");
+            const nextBtn = document.querySelector(".next");
+            const dotsContainer = document.getElementById("dotsContainer");
+
+            //image slideshows for each category
+            const slideshows = {
+                animals: 
+                ['https://www.worldanimalprotection.ca/cdn-cgi/image/width=1280,format=auto/siteassets/shutterstock_2461984615.jpg', 
+                'https://d1jyxxz9imt9yb.cloudfront.net/article/4983/meta_image/regular/AdobeStock_331202050_538219_reduced.jpg', 
+                'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg', 
+                'https://d1jyxxz9imt9yb.cloudfront.net/medialib/4350/image/s768x1300/AdobeStock_123823873_433578_reduced.jpg', 
+                'https://media.wired.com/photos/65caa6f6f553745750c04769/master/w_2560%2Cc_limit/elephant-congo-science-GettyImages-630005418.jpg',
+                'https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/F76F/production/_101934336_hi001487062.jpg'],
+
+                fantasy: 
+                ['https://i0.wp.com/joncronshaw.com/wp-content/uploads/2023/12/DALL%C2%B7E-2023-12-05-10.05.23-A-majestic-wyvern-soaring-above-a-breathtaking-fantasy-landscape.-The-wyvern-a-large-dragon-like-creature-with-two-legs-and-a-pair-of-large-wings-g.png?fit=1200%2C686&ssl=1', 
+                'https://t3.ftcdn.net/jpg/05/54/12/28/360_F_554122808_70uodDBTFvbJJjM8Fu9Vy24WHK614SXh.jpg', 
+                'https://s26162.pcdn.co/wp-content/uploads/2023/09/fantasy-8094384_1280.jpg',
+                'https://www.secret-retreats.com/blog/wp-content/uploads/2024/02/425547638_377276681687367_4110588124217282024_n.gif',
+                'https://www.realmofhistory.com/wp-content/uploads/2023/06/Dragon.jpg',
+                'https://miro.medium.com/v2/resize:fit:2000/0*E4bshsFAqqwsyh74',
+                'https://b1909488.smushcdn.com/1909488/wp-content/uploads/2023/11/the-rise-of-dark-fantasy-podcast-episode-feature-750x422.jpg?lossy=1&strip=1&webp=1',
+                'https://rocketexpansion.com/wp-content/uploads/2020/02/fantasy-author-websites-v2-fb.jpg'],
+                
+                aliens: 
+                ['https://www.telegraph.co.uk/content/dam/news/2023/06/09/TELEMMGLPICT000338751957_16863205711450_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpeg?imwidth=680', 
+                'https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/09/unnamed-13.jpg', 
+                'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2Fe3ed8e5c-8b85-11ea-a109-483c62d17528?source=next-article&fit=scale-down&quality=highest&width=700&dpr=1', 
+                'https://cf-img-a-in.tosshub.com/sites/visualstory/wp/2023/11/alien-life-scaled.jpeg?size=*:900',
+                'https://img.asmedia.epimg.net/resizer/v2/JEY7K2DTGBCVPKWQ3H2GAZ2QKQ.jpg?auth=f2a6e43e898d44a272c2e05f4a7a34c87d74e1d29ab9593de6eff4fc1671f4e1&width=1472&height=828&smart=true',
+                'https://images.theconversation.com/files/192834/original/file-20171101-19850-1xw0u3e.jpg?ixlib=rb-4.1.0&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip'],
+                
+                landscapes: 
+                ['https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg', 
+                'https://cdn.prod.website-files.com/63a02e61e7ffb565c30bcfc7/65ea973aff8798ab070de71f_most%20beautiful%20landscapes%20in%20the%20world.webp', 
+                'https://cdn.naturettl.com/wp-content/uploads/2020/04/25152036/how-to-find-great-locations-for-landscape-photography-11-800x534.jpg', 
+                'https://www.popphoto.com/uploads/2019/01/17/OMIQWIVQ44S2FB7LDDHHR4KIEU.jpeg?auto=webp&optimize=high&crop=2:1&width=765',
+                'https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/blogs/18725/images/mM87l2ZsQRSawMLLRlFF_FallLandscape7-.jpg',
+                'https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-28802-346529.jpg&fm=jpg'],
+                
+                cars: 
+                ['https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/models_gw/2023/03_29_revuelto/gate_models_s_02_m.jpg',
+                'https://robbreport.com/wp-content/uploads/2023/08/RR_Bugatti_Mistral.jpg?w=800', 
+                'https://hips.hearstapps.com/hmg-prod/images/aventador-svj-roadster-1589920058.jpg', 
+                'https://www.chevrolet.com/content/dam/chevrolet/na/us/english/index/vehicles/2025/performance/corvette-z06/mov/01-images/2025-z06-masthead-01.png?imwidth=960', 
+                'https://www.turbo.fr/sites/default/files/2023-11/Mustang%201.jpg',
+                'https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960',
+                'https://media.ed.edmunds-media.com/mclaren/750s/2024/oem/2024_mclaren_750s_coupe_base_fq_oem_10_600.jpg',
+                'https://www.popsci.com/wp-content/uploads/2021/06/15/lambo.jpeg'],
+                
+                dinosaurs: 
+                ['https://www.dinosaur.org/wp-content/uploads/2024/02/traissic-era-picture.png', 
+                'https://media.istockphoto.com/id/1390038554/photo/tyrannosaurus-from-the-cretaceous-era-3d-illustration.jpg?s=612x612&w=0&k=20&c=XHmc7HuHRnwwF2I3D_eV69n_GEz6lof_FtpHQ4w_Ixk=', 
+                'https://www.dinosaur.org/wp-content/uploads/2024/08/illustration-featuring-a-variety-of-sauropodomorph-dinosaurs-in-a-lush-Jurassic-landscape-1024x574.png', 
+                'https://live-production.wcms.abc-cdn.net.au/29a22aeb0d8ca9ddfdc4a479450adcbd?impolicy=wcms_crop_resize&cropH=1080&cropW=1920&xPos=0&yPos=0&width=862&height=485',
+                'https://media.cnn.com/api/v1/images/stellar/prod/210811163224-02-china-dinosaurs.jpeg?q=x_12,y_0,h_886,w_1574,c_crop/h_833,w_1480',
+                'https://www.science.org/do/10.1126/science.zlch9vm/full/_20240620_on_giant_horned_dinosaur_lede-1718897025690.jpg']
+            };
+
+            let currentSlideshow = [];
+            let currentIndex = 0;
+
+       // Function to open the slideshow
+       function openSlideshow(images) {
+        currentSlideshow = images;
+        currentSlideIndex = 0;
+        updateSlideshow();
+        slideshowModal.style.display = "flex";
+        updateDots();
+    }
+
+    // Update the slideshow image and dots
+    function updateSlideshow() {
+        slideshowImage.src = currentSlideshow[currentSlideIndex];
+        updateActiveDot();
+    }
+
+    // Update dots
+    function updateDots() {
+        dotsContainer.innerHTML = "";
+        currentSlideshow.forEach((_, index) => {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (index === currentSlideIndex) {
+                dot.classList.add("active");
+            }
+            dot.addEventListener("click", () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Update active dot
+    function updateActiveDot() {
+        const dots = dotsContainer.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentSlideIndex);
+        });
+    }
+
+    // Go to a specific slide
+    function goToSlide(index) {
+        currentSlideIndex = index;
+        updateSlideshow();
+    }
+
+    // Open slideshow when gallery item is clicked
+    galleryItems.forEach((item) => {
+        item.addEventListener("click", function () {
+            const category = item.getAttribute("data-slideshow");
+            if (slideshows[category]) {
+                openSlideshow(slideshows[category]);
+            }
+        });
+    });
+
+    // Navigate slideshow
+    function changeSlide(direction) {
+        currentSlideIndex += direction;
+        if (currentSlideIndex < 0) currentSlideIndex = currentSlideshow.length - 1;
+        if (currentSlideIndex >= currentSlideshow.length) currentSlideIndex = 0;
+        updateSlideshow();
+    }
+
+    // Close slideshow
+    closeBtn.addEventListener("click", function () {
+        slideshowModal.style.display = "none";
+    });
+
+    // Navigation buttons
+    prevBtn.addEventListener("click", function () {
+        changeSlide(-1);
+    });
+    nextBtn.addEventListener("click", function () {
+        changeSlide(1);
+    });
+
+    // Close slideshow when clicking outside the content
+    slideshowModal.addEventListener("click", function (event) {
+        if (event.target === slideshowModal) {
+            slideshowModal.style.display = "none";
+        }
+    });
+});
+    </script>
+</body>
+</html>
